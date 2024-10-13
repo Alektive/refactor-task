@@ -23,7 +23,7 @@ class LoyaltyPointsTransaction extends Model implements \App\Module\Loyalty\Doma
      */
     public function isCanceled(): bool
     {
-        return in_array($this->canceled, [true, 'true']);
+        return $this->canceled > 0;
     }
 
     public static function performPaymentLoyaltyPoints($account_id, $points_rule, $description, $payment_id, $payment_amount, $payment_time)

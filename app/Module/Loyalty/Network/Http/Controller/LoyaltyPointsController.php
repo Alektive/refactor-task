@@ -46,25 +46,6 @@ class LoyaltyPointsController extends Controller
         }
     }
 
-    public function cancel()
-    {
-        $data = $_POST;
-
-        $reason = $data['cancellation_reason'];
-
-        if ($reason == '') {
-            return response()->json(['message' => 'Cancellation reason is not specified'], 400);
-        }
-
-        if ($transaction = LoyaltyPointsTransaction::where('id', '=', $data['transaction_id'])->where('canceled', '=', 0)->first()) {
-            $transaction->canceled = time();
-            $transaction->cancellation_reason = $reason;
-            $transaction->save();
-        } else {
-            return response()->json(['message' => 'Transaction is not found'], 400);
-        }
-    }
-
     public function withdraw()
     {
         $data = $_POST;

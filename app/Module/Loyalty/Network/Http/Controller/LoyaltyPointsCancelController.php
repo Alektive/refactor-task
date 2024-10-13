@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Module\Loyalty\Network\Http\Controller;
 
 use App\Module\Loyalty\Domain\Api\LoyaltyPointsTransactionFinder;
+use App\Module\Loyalty\Domain\Api\RawCancelLoyaltyPointsTransaction;
 use App\Module\Loyalty\UseCase\Api\CancelLoyaltyPointsTransaction;
 use App\Module\Shared\Network\Controller\BaseApiController;
 use App\Module\Loyalty\Network\Http\Api\NwkLoyaltyPointsTransactionCancel;
@@ -72,7 +73,12 @@ final class LoyaltyPointsCancelController extends BaseApiController
         // execute via use case
         $this
             ->cancelLoyaltyPointsTransaction
-            ->do($transaction);
+            ->do(
+                loyaltyPointsTransaction: $transaction,
+                rawCancelLoyaltyPointsTransaction: new RawCancelLoyaltyPointsTransaction(
+                    cancel_reason: $nwkLoyaltyPointsTransactionCancel->cancellation_reason,
+                ),
+            );
 
         return response()->json(
             ['message' => 'Transaction #%s has been successfully canceled.'],

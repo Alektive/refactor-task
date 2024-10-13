@@ -10,9 +10,14 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Exception\ExceptionInterface as SerializerException;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class BaseApiController extends Controller
 {
+    /** @var string */
+    protected string $nwkRequestClass = \stdClass::class;
+
     /**
      * @param Request $request
      * @return Response
@@ -59,6 +64,19 @@ class BaseApiController extends Controller
                 'message' => 'Failed process request.',
             ], Response::HTTP_BAD_GATEWAY);
         }
+    }
+
+    /**
+     * @param array $data
+     * @return object
+     * @throws SerializerException
+     */
+    protected function deserializeRequestData(
+        array $data,
+    ): object
+    {
+        return (new Serializer([new ObjectNormalizer()]))
+            ->denormalize($data, $this->nwkRequestClass);
     }
 
     /**

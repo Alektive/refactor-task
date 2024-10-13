@@ -28,7 +28,7 @@ class LoyaltyAccount extends Model implements \App\Module\Loyalty\Domain\Api\Loy
 
     public function isActive(): bool
     {
-        return $this->active === true;
+        return in_array($this->active, [true, 'true']);
     }
 
     public function notify()

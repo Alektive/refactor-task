@@ -1,9 +1,10 @@
 
 POST http://127.0.0.1:8000/api/loyaltyPoints/cancel
+Authorization: Bearer 1|2OxC6N8Xsrvhhk4NcJlQR8CrLud6IWgZC0bCkTkt
 Accept: application/json
 Content-Type: application/json
 
 {
   "cancellation_reason": "Тестирование",
-  "transaction_id": 1234
+  "transaction_id": 1
 }

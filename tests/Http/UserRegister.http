@@ -1,0 +1,10 @@
+
+POST http://127.0.0.1:8000/api/user/register
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Ivan Ivanov",
+    "email": "ivan@example.com",
+    "password": "eq2;VvXa86:sJ3j4P!95-m"
+}

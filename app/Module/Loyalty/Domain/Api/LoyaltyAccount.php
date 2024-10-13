@@ -21,6 +21,11 @@ interface LoyaltyAccount
     public const TYPE_PHONE = 'phone';
 
     /**
+     * @return int
+     */
+    public function getId(): int;
+
+    /**
      * @virtual
      * @return float
      */
@@ -30,4 +35,16 @@ interface LoyaltyAccount
      * @return bool
      */
     public function isActive(): bool;
+
+    /**
+     * @virtual
+     * @return bool
+     */
+    public function canNotifyEmail(): bool;
+
+    /**
+     * @virtual
+     * @return bool
+     */
+    public function canNotifySms(): bool;
 }

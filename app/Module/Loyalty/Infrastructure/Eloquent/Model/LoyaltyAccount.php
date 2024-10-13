@@ -21,6 +21,30 @@ class LoyaltyAccount extends Model implements \App\Module\Loyalty\Domain\Api\Loy
         'active',
     ];
 
+    /**
+     * @return bool
+     */
+    public function canNotifyEmail(): bool
+    {
+        return !empty($this->email) && in_array($this->email_notification, [true, 'true']);
+    }
+
+    /**
+     * @return bool
+     */
+    public function canNotifySms(): bool
+    {
+        return !empty($this->phone) && in_array($this->phone_notification, [true, 'true']);
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
     public function getBalance(): float
     {
         return LoyaltyPointsTransaction::where('canceled', '=', 0)->where('account_id', '=', $this->id)->sum('points_amount');

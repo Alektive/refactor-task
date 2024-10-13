@@ -9,7 +9,7 @@ final class NwkLoyaltyPointsTransactionDeposit
     /**
      * @param int $account_id
      * @param string $account_type
-     * @param string $loyalty_points_rule
+     * @param int   $loyalty_points_rule
      * @param string $description
      * @param int $payment_id
      * @param float $payment_amount
@@ -18,7 +18,7 @@ final class NwkLoyaltyPointsTransactionDeposit
     public function __construct(
         public int    $account_id,
         public string $account_type,
-        public string $loyalty_points_rule,
+        public int    $loyalty_points_rule,
         public string $description,
         public int    $payment_id,
         public float  $payment_amount,

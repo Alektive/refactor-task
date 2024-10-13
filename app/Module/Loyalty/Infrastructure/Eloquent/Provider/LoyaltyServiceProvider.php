@@ -25,5 +25,13 @@ class LoyaltyServiceProvider extends ServiceProvider
             \App\Module\Loyalty\Domain\Api\CancelLoyaltyPointsTransaction::class,
             \App\Module\Loyalty\Infrastructure\Eloquent\Service\CancelLoyaltyPointsTransaction::class,
         );
+        $this->app->bind(
+            \App\Module\Loyalty\Domain\Api\DepositLoyaltyPointsAccount::class,
+            \App\Module\Loyalty\Infrastructure\Eloquent\Service\DepositLoyaltyPointsAccount::class,
+        );
+        $this->app->bind(
+            \App\Module\Loyalty\Domain\Api\WithdrawLoyaltyPointsAccount::class,
+            \App\Module\Loyalty\Infrastructure\Eloquent\Service\WithdrawLoyaltyPointsAccount::class,
+        );
     }
 }

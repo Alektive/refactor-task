@@ -18,6 +18,34 @@ class LoyaltyPointsTransaction extends Model implements \App\Module\Loyalty\Doma
         'payment_time',
     ];
 
+    /** @var LoyaltyAccount|null */
+    private ?LoyaltyAccount $account = null;
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return LoyaltyAccount
+     */
+    public function getAccount(): LoyaltyAccount
+    {
+        return $this->account
+            ?? $this->account = LoyaltyAccount::where('id', '=', $this->account_id)->firstOrFail();
+    }
+
+    /**
+     * @return int
+     */
+    public function getPointsAmount(): int
+    {
+        return $this->points_amount;
+    }
+
     /**
      * @return bool
      */

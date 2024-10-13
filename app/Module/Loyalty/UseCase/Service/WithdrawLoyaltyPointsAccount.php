@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Log;
 
 final class WithdrawLoyaltyPointsAccount implements \App\Module\Loyalty\UseCase\Api\WithdrawLoyaltyPointsAccount
 {
+    public function __construct(
+        private \App\Module\Loyalty\Domain\Api\WithdrawLoyaltyPointsAccount $withdrawLoyaltyPointsAccount,
+    )
+    {
+    }
+
     /**
      * @param LoyaltyAccount $loyaltyAccount
      * @param RawWithdrawLoyaltyPoints $rawWithdrawLoyaltyPoints
@@ -27,8 +33,9 @@ final class WithdrawLoyaltyPointsAccount implements \App\Module\Loyalty\UseCase\
                 throw new \LogicException('Insufficient funds: ' . $rawWithdrawLoyaltyPoints->points_amount);
             }
 
-            throw new \LogicException('Not implemented');
-
+            $transaction = $this
+                ->withdrawLoyaltyPointsAccount
+                ->do($loyaltyAccount, $rawWithdrawLoyaltyPoints);
         } catch (\Throwable $exception) {
             Log::critical('Failed withdraw loyalty points account: ' . $exception->getMessage(), [
                 'exception' => $exception,
@@ -36,5 +43,7 @@ final class WithdrawLoyaltyPointsAccount implements \App\Module\Loyalty\UseCase\
 
             throw $exception;
         }
+
+        return $transaction;
     }
 }

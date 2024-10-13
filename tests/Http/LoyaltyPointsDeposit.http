@@ -1,14 +1,16 @@
 
 POST http://127.0.0.1:8000/api/loyaltyPoints/deposit
+Authorization: Bearer 1|2OxC6N8Xsrvhhk4NcJlQR8CrLud6IWgZC0bCkTkt
 Accept: application/json
 Content-Type: application/json
 
 {
-    "account_id": 1234,
+    "account_id": 1,
     "account_type": "card",
     "description": "Тестирование",
-    "payment_id": 1234,
+    "loyalty_points_rule": 1,
+    "payment_id": 1,
     "payment_amount": 1234,
-    "payment_time": 1234,
+    "payment_time": 1728857453,
     "points_amount": 1
 }

@@ -48,6 +48,7 @@ final class LoyaltyPointsDepositController extends BaseApiController
                 'account_type' => ['required', 'string', new RuleIn(LoyaltyAccount::ALLOWED_TYPES)],
                 'description' => ['required', 'string', 'min:10', 'max:1000'],
                 'payment_id' => ['required', 'integer', 'min:1'],
+                'loyalty_points_rule' => ['required', 'integer', 'min:1'],
                 'payment_amount' => ['required', 'integer', 'min:1'],
                 'payment_time' => ['required', 'integer'],
                 'points_amount' => ['required', 'integer', 'min:1'],

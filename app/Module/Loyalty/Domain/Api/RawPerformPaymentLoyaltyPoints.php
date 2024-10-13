@@ -7,14 +7,14 @@ namespace App\Module\Loyalty\Domain\Api;
 class RawPerformPaymentLoyaltyPoints
 {
     /**
-     * @param string $loyalty_points_rule
+     * @param int $loyalty_points_rule
      * @param string $description
      * @param int $payment_id
      * @param float $payment_amount
      * @param int $payment_time
      */
     public function __construct(
-        public string $loyalty_points_rule,
+        public int $loyalty_points_rule,
         public string $description,
         public int    $payment_id,
         public float  $payment_amount,

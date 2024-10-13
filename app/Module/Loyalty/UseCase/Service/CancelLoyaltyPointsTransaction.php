@@ -4,13 +4,19 @@ declare(strict_types=1);
 
 namespace App\Module\Loyalty\UseCase\Service;
 
+use App\Module\Loyalty\Domain\Api\CancelLoyaltyPointsTransaction as DomainCancelService;
 use App\Module\Loyalty\Domain\Api\LoyaltyPointsTransaction;
 use App\Module\Loyalty\Domain\Api\RawCancelLoyaltyPointsTransaction;
 
 class CancelLoyaltyPointsTransaction implements \App\Module\Loyalty\UseCase\Api\CancelLoyaltyPointsTransaction
 {
+    /**
+     * Service constructor.
+     *
+     * @param DomainCancelService $cancelLoyaltyPointsTransaction
+     */
     public function __construct(
-        private \App\Module\Loyalty\Domain\Api\CancelLoyaltyPointsTransaction $cancelLoyaltyPointsTransaction,
+        private DomainCancelService $cancelLoyaltyPointsTransaction,
     )
     {
     }

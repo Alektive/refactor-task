@@ -2,7 +2,7 @@
 
 namespace App\Module\Loyalty\Domain\Api;
 
-interface LoyaltyPointsAccount
+interface LoyaltyAccount
 {
     /** @var string[] */
     public const ALLOWED_TYPES = [
@@ -19,4 +19,15 @@ interface LoyaltyPointsAccount
 
     /** @var string */
     public const TYPE_PHONE = 'phone';
+
+    /**
+     * @virtual
+     * @return float
+     */
+    public function getBalance(): float;
+
+    /**
+     * @return bool
+     */
+    public function isActive(): bool;
 }

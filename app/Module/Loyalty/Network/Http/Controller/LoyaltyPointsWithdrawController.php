@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Module\Loyalty\Network\Http\Controller;
 
 use App\Module\Shared\Network\Controller\BaseApiController;
-use App\Module\Loyalty\Domain\Api\LoyaltyPointsAccount;
+use App\Module\Loyalty\Domain\Api\LoyaltyAccount;
 use App\Module\Loyalty\Network\Http\Api\NwkLoyaltyPointsTransactionWithdraw;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\In as RuleIn;
@@ -31,7 +31,7 @@ class LoyaltyPointsWithdrawController extends BaseApiController
             request: $request,
             rules: [
                 'account_id' => ['required', 'integer'],
-                'account_type' => ['required', 'string', new RuleIn(LoyaltyPointsAccount::ALLOWED_TYPES)],
+                'account_type' => ['required', 'string', new RuleIn(LoyaltyAccount::ALLOWED_TYPES)],
                 'description' => ['required', 'string', 'min:10', 'max:1000'],
                 'points_amount' => ['required', 'integer', 'min:1'],
             ],

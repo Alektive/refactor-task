@@ -4,7 +4,7 @@ namespace App\Module\Loyalty\Infrastructure\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class LoyaltyPointsTransaction extends Model
+class LoyaltyPointsTransaction extends Model implements \App\Module\Loyalty\Domain\Api\LoyaltyPointsTransaction
 {
     protected $table = 'loyalty_points_transaction';
 

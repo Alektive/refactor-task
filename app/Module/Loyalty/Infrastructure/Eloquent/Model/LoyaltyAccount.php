@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
-class LoyaltyAccount extends Model
+class LoyaltyAccount extends Model implements \App\Module\Loyalty\Domain\Api\LoyaltyAccount
 {
     protected $table = 'loyalty_account';
 
@@ -24,6 +24,11 @@ class LoyaltyAccount extends Model
     public function getBalance(): float
     {
         return LoyaltyPointsTransaction::where('canceled', '=', 0)->where('account_id', '=', $this->id)->sum('points_amount');
+    }
+
+    public function isActive(): bool
+    {
+        return $this->active === true;
     }
 
     public function notify()

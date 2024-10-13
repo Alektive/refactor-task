@@ -1,0 +1,9 @@
+
+POST http://127.0.0.1:8000/api/loyaltyPoints/cancel
+Accept: application/json
+Content-Type: application/json
+
+{
+  "cancellation_reason": "Тестирование",
+  "transaction_id": 1234
+}

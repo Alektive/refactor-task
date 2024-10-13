@@ -1,0 +1,14 @@
+
+POST http://127.0.0.1:8000/api/loyaltyPoints/deposit
+Accept: application/json
+Content-Type: application/json
+
+{
+    "account_id": 1234,
+    "account_type": "card",
+    "description": "Тестирование",
+    "payment_id": 1234,
+    "payment_amount": 1234,
+    "payment_time": 1234,
+    "points_amount": 1
+}

@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\UserController;
-use App\Module\Loyalty\Network\Http\Controller\LoyaltyPointsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,14 +25,4 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('account/activate/{type}/{id}', [AccountController::class, 'activate']);
     Route::post('account/deactivate/{type}/{id}', [AccountController::class, 'deactivate']);
     Route::get('account/balance/{type}/{id}', [AccountController::class, 'balance']);
-
-    // loyalty points management
-    Route::post('loyaltyPoints/deposit', [LoyaltyPointsController::class, 'deposit']);
-    Route::post('loyaltyPoints/withdraw', [LoyaltyPointsController::class, 'withdraw']);
-    Route::post('loyaltyPoints/cancel', [LoyaltyPointsController::class, 'cancel']);
 });
-
-
-
-
-

@@ -32,14 +32,11 @@
 
 ## Installation
 
-- Windows
-```bash
-cd test-task-loyalty-service; docker-compose up
-docker run -it --user www -v ${pwd}:/var/www test-task-loyalty-service /bin/sh -lc "composer install && cp .env.example .env && php artisan key:generate && php artisan migrate"
-```
+Запуск контейнера
 
-- Linux
-```bash
-cd test-task-loyalty-service && docker-compose up
-docker run -it --user www -v $PWD:/var/www test-task-loyalty-service /bin/sh -lc "composer install && cp .env.example .env && php artisan key:generate && php artisan migrate"
+```shell
+# simple up
+$ docker compose up -d
+# with prebuild
+$ docker compose up -d --build
 ```

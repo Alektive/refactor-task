@@ -1,35 +1,42 @@
-FROM php:8.0.11-fpm-alpine
 
-# Set working directory
-WORKDIR /var/www
+FROM php:8.0-fpm-alpine
 
-# Install dependencies
-RUN apk -v --update add \
-    zip \
-    mc \
-    unzip \
-    git \
-    curl \
-    sqlite
+COPY .docker/bin/ /opt/docker/bin/
 
-# Clear cache
-RUN rm -rf /var/lib/apt/lists/*
+ENV APP_PATH=/var/www \
+    APP_UID=1000
 
-# Install extensions
-RUN apk add zlib-dev libzip-dev freetype-dev libxml2-dev \
-    && docker-php-ext-install pdo zip
+RUN set -eux \
+    # Create app user
+    && adduser -u "$APP_UID" -D -S -G www-data app \
+    # Install php extensions
+    && apk add --no-cache --update \
+        zlib-dev \
+        libzip-dev \
+        freetype-dev \
+        libxml2-dev \
+    && docker-php-ext-install \
+        pdo \
+        zip \
+    # Install composer
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer-2 \
+    && ln -sf /usr/local/bin/composer-2 /usr/local/bin/composer \
+    && chmod +x /usr/local/bin/composer* \
+    # Prepare entrypoint
+    && ln -sf /opt/docker/bin/docker-entrypoint.sh /docker-entrypoint.sh \
+    && mkdir -p /docker-entrypoint.d \
+    && ln -sf /opt/docker/bin/laravel-bootstrap.sh /docker-entrypoint.d/10-laravel-bootstrap.sh \
+    && echo "[INFO] PHP-FPM: Entrypoint has been successfully initialized." \
+    # Cleanup image
+    && if [ -d /var/cache/apk ]; then rm -rf /var/cache/apk/*; fi \
+    && if [ -d /var/cache/apk ]; then rm -rf /var/lib/apk/*; fi
 
+WORKDIR $APP_PATH
 
-# Install composer
-RUN curl -sS https://getcomposer.org/installer | php -- \
-        --filename=composer \
-        --install-dir=/usr/local/bin && \
-        echo "alias composer='composer'" >> /root/.bashrc && \
-        composer
+USER app
 
-RUN addgroup -S www && adduser -S www -G www
-
-# Change current user to www
-USER www
+STOPSIGNAL SIGQUIT
 
 CMD ["php", "artisan", "serve", "--host", "0.0.0.0"]
+
+ENTRYPOINT ["/docker-entrypoint.sh"]

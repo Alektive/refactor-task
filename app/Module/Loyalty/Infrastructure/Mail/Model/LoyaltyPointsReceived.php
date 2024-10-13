@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail;
+namespace App\Module\Loyalty\Infrastructure\Mail\Model;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;

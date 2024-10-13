@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Module\Loyalty\Infrastructure\Eloquent\Model;
 
 use App\Mail\AccountActivated;
 use App\Mail\AccountDeactivated;

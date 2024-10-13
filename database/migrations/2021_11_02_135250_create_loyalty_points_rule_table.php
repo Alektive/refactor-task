@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\LoyaltyPointsRule;
+use App\Module\Loyalty\Infrastructure\Eloquent\Model\LoyaltyPointsRule;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LoyaltyAccount;
+use App\Module\Loyalty\Infrastructure\Eloquent\Model\LoyaltyAccount;
 use Illuminate\Http\Request;
 
 class AccountController extends Controller

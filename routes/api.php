@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\AccountController;
-use App\Http\Controllers\LoyaltyPointsController;
 use App\Http\Controllers\UserController;
+use App\Module\Loyalty\Network\Http\Controller\LoyaltyPointsController;
 use Illuminate\Support\Facades\Route;
 
 /*

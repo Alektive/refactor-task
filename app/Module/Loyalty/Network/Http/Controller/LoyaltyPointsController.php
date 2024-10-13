@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Module\Loyalty\Network\Http\Controller;
 
-use App\Mail\LoyaltyPointsReceived;
-use App\Models\LoyaltyAccount;
-use App\Models\LoyaltyPointsTransaction;
+use App\Http\Controllers\Controller;
+use App\Module\Loyalty\Infrastructure\Eloquent\Model\LoyaltyAccount;
+use App\Module\Loyalty\Infrastructure\Eloquent\Model\LoyaltyPointsTransaction;
+use App\Module\Loyalty\Infrastructure\Mail\Model\LoyaltyPointsReceived;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
